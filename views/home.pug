@@ -1,0 +1,28 @@
+head
+  title DOOD PAGE
+  link(rel='icon' href='#')
+  // To remove favicon.ico
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+style.
+  .container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, 120px);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+  }
+h1
+  centre WELCOME TO D+O+O+D
+form(method='POST' action='/create')
+  textarea#description(rows='26' cols='100' style='margin-left: 10em;font-size: large; font-family: Arial;' name='description')
+  input(type='submit' value='submit')
+#app.container
+button#add_el Add element
+template#item_template
+  .item(style='background:rgb(218, 178, 178)' ;='')
+    p {{ num }} #{name}
+    p
+      button.del_el Delete

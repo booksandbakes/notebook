@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>DOOD PAGE</title>
+        <link rel="icon" href="#">      <!--To remove favicon.ico-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+    <style>
+		.container {
+		  width: 100%;
+		  display: grid;
+		  grid-template-columns: repeat(3, 1fr);
+		  grid-template-rows: repeat(auto-fill, 120px);
+		  grid-row-gap: .5em;
+		  grid-column-gap: 1em;
+		}
+		
+	</style>
+
+    <body>
+        <h1><center>WELCOME TO Cool Book</center></h1>
+        <form method="POST" action="/create">
+            <textarea rows="20" cols="70" style="margin-left: 20em;font-size: large; font-family: Arial;" id="description" name="description" >
+            </textarea>
+            <input type="submit" value="submit">
+        </form>
+        <div id="app" class="container">
+        </div>
+        <button id="add_el">Add element</button>      
+        <h2>welcome <%=age %>,</h2>  
+        <template id="item_template">
+          <div class="item" style="background:rgb(218, 178, 178)";>
+            <p>{{ x }} </p>
+            
+            <p>
+              <button class="del_el">Delete</button>
+            </p>
+          </div>
+        </template>
+        
+        
+    <script>
+		const COLORS = [
+		  '#FEFF',
+		  '#9AF',
+		  '#F9A',
+		  "#AFA",
+		  "#FA7"
+		];
+    const name =  [
+    '            kuttu ponnu',
+    '            hey miss. Loganayaki',
+    '            Ms.Loganayaki is a good girl',
+    '            knowing how to load elements dynamically is very important especially when loading content from a server or collecting information randomly from users. Hope you enjoyed the tutorials, see you in the next'
+        ];
+    
+		function addItem(container, template, x) {
+		  let color = COLORS[_.random(COLORS.length - 1)];
+		  let num = _.random(10000);
+          console.log(x,color);
+        
+		  container.append(Mustache.render(template, { color, x }));
+		}
+        
+		$(() => {
+		  const tmpl = $('#item_template').html()
+		  const container = $('#app');
+		  
+		  for(let i=0; i<name.length; i++) { 
+            let x = name[i] ;  
+            addItem(container, tmpl, x);
+         }
+		  
+		  $('#add_el').click(() => {
+			addItem(container, tmpl);
+		  })
+		  
+		  container.on('click', '.del_el', (e) => {
+			$(e.target).closest('.item').remove();
+		  });
+		});
+
+
+
+
+</script>
+</body>
+</html>

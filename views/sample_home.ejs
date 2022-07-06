@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>DOOD PAGE</title>
+        <link rel="icon" href="#">      <!--To remove favicon.ico-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!--<script src="/handler/books.js" type="module">  link page -->
+		<script type="text/javascript" src="./update.js"></script>
+    </head>
+    <style>
+		.container {
+		  width: 100%;
+		  display: grid;
+		  grid-template-columns: repeat(3, 1fr);
+		  grid-template-rows: repeat(auto-fill, 120px);
+		  grid-row-gap: .5em;
+		  grid-column-gap: 1em;
+		}
+		body{
+			background-image: url('./images/honey-comb.jpg');
+			height: 100%;
+			background-position: center;
+			background-repeat: repeat;
+			background-size: cover;
+		}
+	</style>
+
+    <body>
+        <h1 style="background-color: rgb(0, 0, 0);color: white;"><center><img src="\images\here_bee.gif" alt="Girl in a jacket" width="80" height="90" style="vertical-align:middle"> WELCOME TO BEE BOOK</center></h1>
+        <form method="POST" action="/create">
+            <textarea rows="20" cols="70" style="opacity: 0.7;margin-left: 20em;font-size: large; font-family: Arial;color: white; background-color: black;border-color:black" id="description" name="description" >
+            </textarea>
+            <input type="submit" value="submit"><img src="./images/composizione_2.gif" alt="submit" width="50" height="60">
+        </form>
+		<div id="app" class="container">
+        </div>
+         
+                  
+		
+       <template id="item_template">
+          <% for (var i=0; i < data.length;  i++ ) { %> 
+          <div class="item" style="background:rgb(16, 2, 2);color: rgb(239, 226, 226); opacity: 0.7;border-radius: 10%; border-color: rgb(222, 146, 5);border-width: 5em;";>
+            <p id="doc_value"><br/><%= data[i] %>  </p>
+            <p>
+              <button class="del_el" onclick = "funs_del('<%= data[i] %>')">Delete</button>
+            </p>
+          </div>
+        <% } %> 
+        </template>
+	
+        
+    <script>
+      
+		const COLORS = [
+		  '#FEFF',
+		  '#9AF',
+		  '#F9A',
+		  "#AFA",
+		  "#FA7"
+		];
+    
+		function addItem(container, template, x) {
+		  let color = COLORS[_.random(COLORS.length - 1)];
+		  let num = _.random(10000);
+          console.log(x,color);
+        
+		  container.append(Mustache.render(template, { color, x }));
+		}
+		function funs_del(a)
+		{	
+			alert('start');
+			
+			var res = f1();
+			console.log(res);
+			alert('stop');
+			
+		}
+        
+		$(() => {
+		  const tmpl = $('#item_template').html()
+		  const container = $('#app');
+		  let x = '' ;  
+      addItem(container, tmpl, x);
+		  
+		  $('#add_el').click(() => {
+			addItem(container, tmpl);
+		  })
+		  
+		  container.on('click', '.del_el', (e) => {
+			$(e.target).closest('.item').remove();
+		  });
+		});
+
+
+</script>
+</body>
+</html>

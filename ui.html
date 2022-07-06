@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hamburger Menu</title>      
+  </head>  
+  <style>
+      body{
+
+	background:  #791315;
+	font-family: 'Poppins', sans-serif;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	min-height: 100vh;
+	overflow-y: hidden;
+}
+
+.navigation{
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	overflow: hidden;
+	border-radius: 2px;
+	padding: 30px;
+	min-height: 100vh;
+	width: 100%;
+}
+
+
+nav {
+  position: absolute;
+  width: 250px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  background: #210606;
+  transform: translateX(-100%);
+  transition: 0.7s;
+  z-index: -1;
+}
+
+
+.navigation input:checked ~ nav{
+	transform: translateX(0);
+}
+
+.menu{
+	position: absolute;
+	top: 15%;
+	left: 0.8%;
+	bottom: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: block;
+	transition: 0.5s;
+	
+}
+
+.menu li{
+	list-style: none;
+	margin: 0 10px;
+	padding:50px;
+	text-align: center;
+	transform: translateY(100em);
+	transition: 0.5s;
+}
+
+
+.navigation input:checked ~ .menu li{
+	transform: translateY(0);
+}
+
+
+.menu li a{
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	font-weight: 600;
+	transition: 0.5s;
+}
+
+.menu li a:hover{
+	color: #d40d0d;
+}
+
+.menu li a:before{
+	content: ' ';
+	position: absolute;
+	left: 0%;
+	top: 44.5%;
+	 border: solid #d40d0d;
+	 border-width: 0 3px 3px 0;
+	 display: inline-block;
+	 padding: 3px;
+	 transform: rotate(135deg);
+	 transition: 0.5s;
+	 opacity: 0;
+}
+
+.menu li a:after{
+	content: ' ';
+	position: absolute;
+	right: 0%;
+	top: 44.5%;
+	 border: solid #d40d0d;
+	 border-width: 0 3px 3px 0;
+	 display: inline-block;
+	 padding: 3px;
+	 transform: rotate(-45deg);
+	 transition: 0.5s;
+	 opacity: 0;
+}
+
+.menu li a:hover:before{
+	opacity: 1;
+	left: 10%;
+	transition-delay: 0.1s;
+}
+
+.menu li a:hover:after{
+	opacity: 1;
+	right: 10%;
+	transition-delay:0.3s;
+}
+
+
+.navigation input:checked ~ .menu li:nth-child(1){
+	transform: translateY(0);
+	transition-delay: 0.3s;
+}
+
+
+
+
+.navigation input:checked ~ .menu li:nth-child(2){
+	transform: translateY(0);
+	transition-delay: 0.5s;
+}
+
+
+.navigation input:checked ~ .menu li:nth-child(3){
+	transform: translateY(0);
+	transition-delay: 0.7s;
+}
+
+
+.navigation input:checked ~ .menu li:nth-child(4){
+	transform: translateY(0);
+	transition-delay: 0.9s;
+}
+
+
+.navigation input:checked ~ .menu li:nth-child(5){
+	transform: translateY(0);
+	transition-delay: 1.1s;
+}
+
+
+.navigation input{
+	padding: 0;
+	margin: 0;
+	margin-left: -10px;
+	margin-top: -15px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+	opacity: 0;
+
+}
+
+.navigation span{
+	position: absolute;
+	left: 22px;
+	width: 35px;
+	height: 4px;
+	background: white;
+	pointer-events: none;
+	transition:0.5s;
+	border-radius: 4%;
+}
+
+.navigation span:nth-child(2){
+	transform: translateY(-12px);
+	
+}
+
+.navigation span:nth-child(3){
+	transform: translateY(12px);
+
+}
+
+.navigation input:checked ~ span:nth-child(4){
+	width: 0px;
+	transition: 0.3s;
+}
+
+.navigation input:checked ~ span:nth-child(2){
+	transform: translateY(0) rotate(45deg);
+	transition-delay: 0.2s;
+}
+
+
+.navigation input:checked ~ span:nth-child(3){
+	transform: translateY(0) rotate(-45deg);
+	transition-delay: 0.3s;
+}
+  </style>                
+  <body>
+
+        <div class="navigation">
+            <input type="checkbox" name="">
+            <span></span>
+            <span></span>
+            <span></span>
+            
+    <nav></nav>
+    <ul class="menu">
+                <li><a href="#">Note book</a></li>
+                <li><a href="#">File book</a></li>
+                <li><a href="#">Set PWD</a></li>
+                <li><a href="#">Remove</a></li>
+                <li><a href="#">Contact</a></li>
+    </ul>
+    </div>
+    <div style="margin-left:-20em;">
+        <h1><centre>CoolBook.com</centre></h1>
+        <form method="POST" action="/create">
+            <textarea rows="20" cols="90" style="font-size: large; font-family: Arial;" id="description" name="description" >
+            </textarea>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</body>
+</html>
