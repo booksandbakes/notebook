@@ -26,13 +26,22 @@ app.get('/',function(req, res){
 
 app.post('/create',async(req,res) => {
     var data = req.body.description;
+    let strLength = data.strLength;
+    console.log(`${data} ${data.length}`);
+    var reWhiteSpace = new RegExp("\\s+");
+    if (data != null && !data.isEmpty() && !data.trim().isEmpty()) {
+      console.log('no data');
+    }
+    else{
+      console.log('data available');
+    }
+    //console.log(strLength);
     const re_url = req.app.get('url');
-    console.log(data,re_url);
-
     let ref_doc = a.doc(re_url);
     var retrive_data = await a.doc(re_url).get();     // for only .get() we can check 'exists' , if u add .get().data() exists wont work
-
-    if (!retrive_data.exists) {
+  
+    if (data.lenght!=0){
+      if (!retrive_data.exists) {
         //await ref_doc.set({data: data,}); #only dictionary type
         await ref_doc.set({data:[data]});   //array type
         console.log('New user added!');
@@ -43,6 +52,8 @@ app.post('/create',async(req,res) => {
         console.log('New row added!');
         
       }
+    }
+    
     
     res.redirect(re_url);
 });
@@ -55,7 +66,7 @@ app.post("/upload", async (req, res) => {
 });
 
 app.get('*',async(req,res)=>{   
-  console.log(req.url);
+  //console.log(req.url);
   app.set('url',req.url);    
   if(req.url == '/'){
     res.send('Enter proper URL');
@@ -73,6 +84,17 @@ app.get('*',async(req,res)=>{
 }   
 });
 
+app.post("*",async(req,res)=>{
+  const del_data = req.body.custId;
+  const re_url = req.app.get('url');
+  try{
+    await a.doc(re_url).update("data", FieldValue.arrayRemove(del_data));
+    res.redirect(re_url);
+  }
+  catch(e) {
+    console.log(e.message);
+  }
+});
 
 app.listen(3000, '127.0.0.1');
 console.log('Server listening on http://localhost:3000');

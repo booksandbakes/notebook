@@ -1,12 +1,14 @@
 <html>
     <head>
-        <title>DOOD PAGE</title>
+        <title>BEE BOOK</title>
         <link rel="icon" href="#">      <!--To remove favicon.ico-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<!--<script src="/handler/books.js" type="module">  link page -->
 		<script type="text/javascript" src="./update.js"></script>
+		<script type="module" src="./module.js"></script>
+		<script src="/index.js"></script>
     </head>
     <style>
 		.container {
@@ -23,7 +25,29 @@
 			background-position: center;
 			background-repeat: repeat;
 			background-size: cover;
+			margin-bottom: -10%;
 		}
+		.form-submit-button {
+			background: #000000;
+			color: rgb(255, 255, 255);
+			border: 2px solid rgb(29, 28, 28);
+			border-radius: 50px;
+			text-shadow: none;
+			padding: 10px 25px;
+			font-size: larger;
+		}
+		.form-submit-button:hover {
+			background: #c4c4c4;
+			color: rgb(49, 48, 48);
+			border: 2px solid rgb(29, 29, 29);
+			border-radius: 50px;
+			text-shadow: none;
+			padding: 10px 25px;
+		}
+		.scroll {
+            display: block;
+            overflow-y: scroll;
+        }
 	</style>
 
     <body>
@@ -31,7 +55,7 @@
         <form method="POST" action="/create">
             <textarea rows="20" cols="70" style="opacity: 0.7;margin-left: 20em;font-size: large; font-family: Arial;color: white; background-color: black;border-color:black" id="description" name="description" >
             </textarea>
-            <input type="submit" value="submit"><img src="./images/composizione_2.gif" alt="submit" width="50" height="60">
+            <input type="submit" value="submit" class="form-submit-button"><img src="./images/honey-bee-gif-11.gif" alt="submit" width="100" height="100" style= "margin-left: -8%;position: absolute; top: 65%;">
         </form>
 		<div id="app" class="container">
         </div>
@@ -40,11 +64,15 @@
 		
        <template id="item_template">
           <% for (var i=0; i < data.length;  i++ ) { %> 
-          <div class="item" style="background:rgb(16, 2, 2);color: rgb(239, 226, 226); opacity: 0.7;border-radius: 10%; border-color: rgb(222, 146, 5);border-width: 5em;";>
-            <p id="doc_value"><br/><%= data[i] %>  </p>
-            <p>
-              <button class="del_el" onclick = "funs_del('<%= data[i] %>')">Delete</button>
-            </p>
+          <div class="scroll" style="background:rgb(212, 119, 5);color: rgb(0, 0, 0); opacity: 0.7; border-color: rgb(255, 169, 8);border-width: 5em;padding: 5px 5px 5px 5px;";>
+           <form method="POST" action="/delete">
+				<p id="del_data" name="del_data"><br/>&nbsp;&nbsp;&nbsp;<%= data[i] %>  </p>
+				<input type="hidden" id="custId" name="custId" value="<%= data[i] %>" />
+				&nbsp;&nbsp;&nbsp;<input type="submit"  value="Delete">
+				<!--<button class="del_el" onclick = "funs_del('<%= data[i] %>')">Delete</button>-->
+			</form> 
+			<!--<p id="del_data" name="del_data"><br/><%= data[i] %>  </p>
+			<button class="del_el" onclick = " ">Delete</button>-->
           </div>
         <% } %> 
         </template>
