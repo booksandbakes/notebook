@@ -22,6 +22,23 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
+        .form-submit-button {
+			background: #000000;
+			color: rgb(255, 255, 255);
+			border: 2px solid rgb(29, 28, 28);
+			border-radius: 50px;
+			text-shadow: none;
+			padding: 10px 25px;
+			font-size: larger;
+		}
+		.form-submit-button:hover {
+			background: #c4c4c4;
+			color: rgb(49, 48, 48);
+			border: 2px solid rgb(29, 29, 29);
+			border-radius: 50px;
+			text-shadow: none;
+			padding: 10px 25px;
+		}
 		
 	</style>
 
@@ -30,7 +47,7 @@
         <form method="POST" action="/create">
             <textarea rows="20" cols="70" style="opacity: 0.7;margin-left: 20em;font-size: large; font-family: Arial;color: white; background-color: black; border-color:black"  id="description" name="description" >
             </textarea>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" class="form-submit-button"><img src="./images/honey-bee-gif-11.gif" alt="submit" width="100" height="100" style= "margin-left: -8%;position: absolute; top: 65%;">
         </form>
 
         </div>

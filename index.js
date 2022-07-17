@@ -26,35 +26,25 @@ app.get('/',function(req, res){
 
 app.post('/create',async(req,res) => {
     var data = req.body.description;
-    let strLength = data.strLength;
-    console.log(`${data} ${data.length}`);
-    var reWhiteSpace = new RegExp("\\s+");
-    if (data != null && !data.isEmpty() && !data.trim().isEmpty()) {
-      console.log('no data available');
-    }
-    else{
-      console.log('data available');
-    }
-    //console.log(strLength);
+    //console.log(`${data} ${check}`);
     const re_url = req.app.get('url');
     let ref_doc = a.doc(re_url);
     var retrive_data = await a.doc(re_url).get();     // for only .get() we can check 'exists' , if u add .get().data() exists wont work
-  
-    if (data.lenght!=0){
-      if (!retrive_data.exists) {
-        //await ref_doc.set({data: data,}); #only dictionary type
-        await ref_doc.set({data:[data]});   //array type
-        console.log('New user added!');
+    var check = data.trim().length
 
-      } 
-    else {
-        await ref_doc.update("data", FieldValue.arrayUnion(data));
-        console.log('New row added!');
-        
-      }
+    if (check != 0){
+      if (!retrive_data.exists) {
+          //await ref_doc.set({data: data,}); #only dictionary type
+          await ref_doc.set({data:[data]});   //array type
+          console.log('New user added!');
+
+        } 
+      else {
+          await ref_doc.update("data", FieldValue.arrayUnion(data));
+          console.log('New row added!');
+          
+        }
     }
-    
-    
     res.redirect(re_url);
 });
 
