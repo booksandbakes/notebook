@@ -30,7 +30,7 @@ app.post('/create',async(req,res) => {
     console.log(`${data} ${data.length}`);
     var reWhiteSpace = new RegExp("\\s+");
     if (data != null && !data.isEmpty() && !data.trim().isEmpty()) {
-      console.log('no data');
+      console.log('no data available');
     }
     else{
       console.log('data available');
