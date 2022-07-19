@@ -22,6 +22,15 @@ app.get('/books', books);
 
 app.use(express.static(__dirname+'/views'));
 
+const server = http.createServer(function (req, res) {
+  
+    // Write a response to the client
+    res.write('Hello World')
+  
+    // End the response 
+    res.end()
+});
+
 app.get('/',function(req, res){
   console.log("Start");
   const random = Str.random(5);
@@ -94,6 +103,6 @@ app.post("*",async(req,res)=>{
 //app.listen(3000, '127.0.0.1');
 //console.log('Server listening on http://localhost:3000');
 
-app.listen(port,() => {
+server.listen(port,() => {
   console.log('Server running at port '+port);
 });
