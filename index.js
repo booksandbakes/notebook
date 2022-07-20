@@ -21,6 +21,7 @@ app.get('/books', books);
 
 app.use(express.static(__dirname+'/views'));
 
+
 app.get('/',function(req, res){
   console.log("Start");
   const random = Str.random(5);
