@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "loga",
@@ -16,6 +17,7 @@
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
     "firebase-admin": "^10.0.2",
+    "nodemon": "^2.0.19",
     "pug": "^3.0.2",
     "save": "^2.4.0"
   }

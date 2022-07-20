@@ -1,6 +1,5 @@
 
 const http = require('http');
-const port = process.env.PORT || 3000;
 var express = require('express');
 var app = express();
 
@@ -93,7 +92,6 @@ app.post("*",async(req,res)=>{
 
 //app.listen(3000, '127.0.0.1');
 //console.log('Server listening on http://localhost:3000');
+const PORT = process.env.PORT ||3000;
 
-app.listen(port,() => {
-  console.log('Server running at port '+port);
-});
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
