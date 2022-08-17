@@ -97,5 +97,5 @@ app.post("*",async(req,res)=>{
 
 //app.listen(PORT, console.log(`Server started on port ${PORT}`));
 app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d", this.address().port);
+  console.log("Express server listening on port");
 });
