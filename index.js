@@ -93,6 +93,9 @@ app.post("*",async(req,res)=>{
 
 //app.listen(3000, '127.0.0.1');
 //console.log('Server listening on http://localhost:3000');
-const PORT = process.env.PORT ||3000;
+//const PORT = process.env.PORT ||3000;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+//app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d", this.address().port);
+});
